@@ -51,13 +51,16 @@ const getPostsTemplate = (posts) => {
             <p class='date'>${post.date}</p>
           </div>
           <textarea data-id='${post.id}'class='textPost' disabled='' style='resize: none' rows='3' cols='40'>${post.text}</textarea>
-          <section>${crud}</section>
+          <div class='sectionBtnCrud'>
+            <section class='sectionBtnLikeDeslike'>
+              <button class='btnLike' style="font-size:24px; color:#e96f2c">
+              <i data-id='${post.id}' data-action='${liked ? 'dislike' : 'like'}' class="fa fa-heart-o"></i></button>
+              <div class='like-number'>${post.like.length}</div>
+            </section>
+            <section>${crud}</section>
+          </div>
         </section>
-        <section class='sectionBtnLikeDeslike'>
-        <button class='btnLike' style="font-size:24px">
-        <i data-id='${post.id}' data-action='${liked ? 'dislike' : 'like'}' class="fa fa-heart-o"></i></button>
-      <div class='like-number'>${post.like.length}</div>
-        </section>`;
+      </section>`;
   })
     .join('');
   return postTemplate;
@@ -67,40 +70,47 @@ export default () => {
   const sectionFeed = document.createElement('div');
   //Template do feed
   sectionFeed.innerHTML = `
-  <header class='headerFeed'>
-    <img src='img/logoTranp.png' class='loginhoFeed' alt='Logo Peq Wanderlust'>
-  </header>
-  <nav class='navBar'>
-    <ul class='sectionSobreEperfil'>
-      <a class='btnSIgnInOut' id='logOut'><img src='img/btnSair.png' alt='seta para sair'</a>
-      <a href='#sobre' class='sobrepageFeed'>SOBRE</a>
-      <a href='#perfil' class='perfilFeed'>PERFIL</a>
-    </ul>
-  </nav>
-  <section class='msgBoasvindas'>
-    <img src=${current().photoURL} alt='User' class='fotoUser'>
-    <p class='nomeUser'> Olá, ${nameUser()}!</p>
-  </section>
-  <div class='bodyFeed'>
-    <div clas='corpotimeline'>
-      <form id='create-Post'>
-        <section class='boxModelPost'>
-          <form>
-            <form class='sectionTextarea'>
-              <textarea id='text-publish' style='resize: none' class='inputText' rows='3' cols='40' placeholder='Escreva detalhes sobre a estadia em sua residência...'></textarea>
-            </form>
-            <p class='sectionBtnPubli'>
-              <button type='submit' id='publish-btn' class='publicBtn'>Publicar</button>
-            </p>
-          </form>
-        </section>
-        <section class='principalTimeline' id='post-feed'></section>
-      </form> 
-     <footer class='footer'>
-        <p>&copy; 2022 Criado e Desenvolvido por Aghatha, Andresa e Ariane para o Bootcamp SAP008 Laboratoria</p>
-      </footer>
+  <div>
+    <header class='headerFeed'>
+      <img src='img/logoTranp.png' class='loginhoFeed' alt='Logo Peq Wanderlust'>
+    </header>
+    <nav class='navBar'>
+      <ul class='sectionSobreEperfil'>
+        <a class='btnSIgnInOut' id='logOut'><img src='img/btnSair.png' alt='seta para sair'</a>
+        <a href='#sobre' class='sobrepageFeed'>SOBRE</a>
+        <a href='#perfil' class='perfilFeed'>PERFIL</a>
+      </ul>
+    </nav>
+    <section class='msgBoasvindas'>
+      <div class='containerFotoeNome'>
+        <img src=${current().photoURL} alt='User' class='fotoUser'>
+        <p class='nomeUser'> Olá, ${nameUser()}!</p>
+      </div>
+    </section>
+    <div class='bodyFeed'>
+      <div clas='corpotimeline'>
+        <form id='create-Post'>
+          <div class='principalPublicPost'>
+            <section class='boxModelPostPublic'>
+              <div>
+                <form class='sectionTextarea'>
+                  <textarea id='text-publish' style='resize: none' class='inputText' rows='3' cols='40' placeholder='Escreva detalhes sobre a estadia em sua residência...'></textarea>
+                </form>
+                <p class='sectionBtnPubli'>
+                  <button type='submit' id='publish-btn' class='publicBtn'>Publicar</button>
+                </p>
+              </div>
+            </section>
+          </div>
+          <section class='principalTimeline' id='post-feed'></section>
+        </form> 
+      </div>
     </div>
-  </div> `;
+    <footer class='footer'>
+      &copy; 2022 Criado e Desenvolvido por Aghatha, Andresa e Ariane para o Bootcamp SAP008 Laboratoria
+    </footer>
+  </div>
+ `;
 
   const createform = sectionFeed.querySelector('#create-Post');
   const textAreaPost = sectionFeed.querySelector('#text-publish');
