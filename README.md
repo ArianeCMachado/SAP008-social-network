@@ -15,7 +15,7 @@
 
   <br>
 
-  Terceiro projeto da turma SAP008 da Laboratoria - https:// 
+  Terceiro projeto da turma SAP008 da Laboratoria - https://arianecmachado.github.io/SAP008-social-network
   
 </div>
  <br>
